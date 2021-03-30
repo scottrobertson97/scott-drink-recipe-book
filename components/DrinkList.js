@@ -17,14 +17,12 @@ app.component('drink-list', {
 			<option value="other">Other</option>
       	</select>
 		<ul>
-			<template v-for="drink in drinks">
+			<template v-for="(drink, index) in drinks">
 			<li v-if="spirit == 'all' || drink.spirit == spirit">
-				<h3>{{drink.drinkName}}</h3>
-				<ul>
-					<li v-for="ingredient in drink.ingredients">
-						{{ingredient.oz}} oz of {{ingredient.name}}
-					</li>
-				</ul>
+				<drink-card
+					:drink="drink" 
+					@delete-drink=deleteDrink(index)>
+				</drink-card>
 			</li>
 			</template>
 		</ul>
@@ -32,6 +30,10 @@ app.component('drink-list', {
 	data(){
 		return {spirit: 'all'};
 	},
-	methods: {},
+	methods: {
+		deleteDrink(index){
+			this.$emit('delete-drink', index);
+		}
+	},
 	computed: {},
 });

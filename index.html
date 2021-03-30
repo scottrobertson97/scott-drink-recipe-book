@@ -6,12 +6,16 @@
 <body>
 	<div id="app">
 		<drink-form @drink-submitted="addDrink"></drink-form>	
-		<drink-list :drinks="drinks"></drink-list>
+		<drink-list
+			:drinks="drinks"
+			@delete-drink="deleteDrink"
+		></drink-list>
 	</div>
 	<script src="drinks.js"></script>
 	<script src="main.js"></script>
 	<script src="./components/DrinkList.js"></script>
 	<script src="./components/DrinkForm.js"></script>
+	<script src="./components/DrinkCard.js"></script>
 	<script>
 		const mountedApp = app.mount('#app');
 	</script>

@@ -1,21 +1,26 @@
 const app = Vue.createApp({
     data() {
         return {
-            drinks: [],
+            drinks: []
         }
     },
 	created() {
 		let drinksJSON = localStorage.getItem("drinks");
-		if(drinksJSON){
-			this.drinks = JSON.parse(drinksJSON);
-		} else {
-			this.drinks = [...drinks];
-		}		
+		let localDrinks =  JSON.parse(drinksJSON) || [];
+		this.drinks = [...localDrinks, ...drinks];
 	},
 	methods: {
 		addDrink(drink){
 			this.drinks.push(drink);
-			localStorage.setItem("drinks", JSON.stringify(this.drinks));
+			this.saveDrinks();
+		},
+		deleteDrink(index){
+			this.drinks.splice(index, 1);
+			this.saveDrinks();
+		},
+		saveDrinks(){
+			let drinksJSON = JSON.stringify(this.drinks.filter(drink=>!drink.cantDelete));
+			localStorage.setItem("drinks", drinksJSON);
 		}
 	},
-})
+});

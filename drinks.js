@@ -8,6 +8,7 @@ const drinks = [
 		{ oz: '0.5', name: 'Lime Juice' },
 		{ oz: '0.5', name: 'Lemon Juice' },
 	  ],
+	  cantDelete:true
 	},
 	{
 	  drinkName: 'Margarita',
@@ -18,6 +19,7 @@ const drinks = [
 		{ oz: '0.75', name: 'Agave Nector' },
 		{ oz: '0.75', name: 'Triple Sec' },
 	  ],
+	  cantDelete:true
 	},
 	{
 	  drinkName: 'Cosmopolitan',
@@ -28,5 +30,6 @@ const drinks = [
 		{ oz: '0.5', name: 'Lime Juice' },
 		{ oz: '0.25', name: 'Cranberry Juice' },
 	  ],
+	  cantDelete:true
 	},
 ];
