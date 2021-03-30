@@ -1,7 +1,7 @@
-app.component('drink-form', {
-	template:
-	/*html*/
-	`<form>
+app.component("drink-form", {
+  template:
+    /*html*/
+    `<form id="drinkForm">
 		<h3>Add Drink</h3>
 		<label for="drinkName">Drink Name:</label>
 		<input name="drinkName" v-model="drinkName" />
@@ -35,43 +35,43 @@ app.component('drink-form', {
 		<br />
 		<button @click="addDrink">Add Drink</button>
 	</form>`,
-	data(){
-		return {
-			drinkName:'',
-			spirit:'',
-			ingredients:[{oz:'', name:''}],
-		};
-	},
-	methods: {
-		addDrink(event) {
-			event.preventDefault();
-			let incomplete = this.drinkName === '' || this.spirit==='';
-			for (const ingredient of this.ingredients) {
-				if(incomplete || ingredient.oz === '' || ingredient.name === ''){
-					alert('incomplete. Please fill out every field.')
-					return;
-				}
-			}
+  data() {
+    return {
+      drinkName: "",
+      spirit: "",
+      ingredients: [{ oz: "", name: "" }],
+    };
+  },
+  methods: {
+    addDrink(event) {
+      event.preventDefault();
+      let incomplete = this.drinkName === "" || this.spirit === "";
+      for (const ingredient of this.ingredients) {
+        if (incomplete || ingredient.oz === "" || ingredient.name === "") {
+          alert("incomplete. Please fill out every field.");
+          return;
+        }
+      }
 
-			let drink = {
-				drinkName: this.drinkName,
-				spirit: this.spirit,
-				ingredients: this.ingredients,
-			}
+      let drink = {
+        name: this.drinkName,
+        spirit: this.spirit,
+        ingredients: this.ingredients,
+      };
 
-			this.$emit('drink-submitted', drink);
+      this.$emit("drink-submitted", drink);
 
-			this.drinkName = '';
-			this.ingredients = [{oz:'', name:''}];
-			this.spirit='';
-		},
-		addIngredient(event){
-			event.preventDefault();
-			this.ingredients.push({oz:'', name:''});
-		},
-		deleteIngredient(index, event){
-			event.preventDefault();
-			this.ingredients.splice(index, 1);
-		},
-	},
+      this.drinkName = "";
+      this.ingredients = [{ oz: "", name: "" }];
+      this.spirit = "";
+    },
+    addIngredient(event) {
+      event.preventDefault();
+      this.ingredients.push({ oz: "", name: "" });
+    },
+    deleteIngredient(index, event) {
+      event.preventDefault();
+      this.ingredients.splice(index, 1);
+    },
+  },
 });
